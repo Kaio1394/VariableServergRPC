@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package variable;
+
+option go_package = "./pb";
+
+import "google/protobuf/timestamp.proto";
+
+message Variable {
+  string variable_key = 1;
+  string variable_value = 2;
+  google.protobuf.Timestamp edit_date = 3;
+}
+
+message VariablesList{
+  repeated Variable variables = 1;
+}
+
+service VariableService{
+  rpc CreateVariable(Variable) returns (Variable);
+  rpc GetVariables(Empty) returns (VariablesList);
+  rpc GetVariable(Variable) returns (Variable);
+  rpc UpdateVariable(Variable) returns (Variable);
+  rpc DeleteVariable(Variable) returns (Variable);
+}
+
+message Empty {}

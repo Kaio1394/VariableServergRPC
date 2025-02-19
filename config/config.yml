@@ -1,0 +1,10 @@
+app:
+  name: "VariableServergRPC"
+
+server:
+  host: "localhost"
+  port: "9090"
+
+dataBase:
+  typeDatabase: "sqlite"
+  stringConnection: "VariableServer.db"

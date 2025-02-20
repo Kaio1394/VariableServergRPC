@@ -15,11 +15,11 @@ func NewVariableRepositoryImpl(db *gorm.DB) *VariableRepositoryImpl {
 	return &VariableRepositoryImpl{}
 }
 
-func (v *VariableRepositoryImpl) CreateVariable(ctx context.Context, variable *pb.Variable) error {
+func (v *VariableRepositoryImpl) CreateVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
 	if err := v.db.WithContext(ctx).Create(variable).Error; err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return variable, nil
 }
 
 func (v *VariableRepositoryImpl) DeleteVariable(ctx context.Context, variable *pb.Variable) error {

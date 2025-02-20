@@ -6,9 +6,9 @@ import (
 )
 
 type VariableHandler interface {
-	CreateVariable(ctx context.Context, req *pb.Variable) error
-	DeleteVariable(ctx context.Context, req *pb.Variable) error
-	UpdateVariable(ctx context.Context, req *pb.Variable) error
-	GetVariable(ctx context.Context, req *pb.Variable) (pb.Variable, error)
-	GetVariables(ctx context.Context) (pb.VariablesList, error)
+	CreateVariable(context.Context, *pb.Variable) (*pb.Variable, error)
+	GetVariables(context.Context, *pb.Empty) (*pb.VariablesList, error)
+	GetVariable(context.Context, *pb.Variable) (*pb.Variable, error)
+	UpdateVariable(context.Context, *pb.Variable) (*pb.Variable, error)
+	DeleteVariable(context.Context, *pb.Variable) (*pb.Variable, error)
 }

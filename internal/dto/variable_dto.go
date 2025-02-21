@@ -21,3 +21,15 @@ func VariableProtoToVariableModel(variable *pb.Variable) (*model.Variable, error
 	varModel.EditDate = variable.EditDate.AsTime()
 	return &varModel, nil
 }
+
+func GetVariablesToVariableList(variables []model.Variable) (pb.VariablesList, error) {
+	var variablesList = []*pb.Variable{}
+	for _, v := range variables {
+		variablesList = append(variablesList, &pb.Variable{
+			VariableKey:   v.Key,
+			VariableValue: v.Value,
+			EditDate:      timestamppb.New(v.EditDate),
+		})
+	}
+	return pb.VariablesList{Variables: variablesList}, nil
+}

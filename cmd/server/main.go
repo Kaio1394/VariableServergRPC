@@ -38,5 +38,4 @@ func main() {
 		return
 	}
 	logger.Log.Infoln("Listening on port 8080")
-
 }

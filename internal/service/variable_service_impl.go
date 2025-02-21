@@ -21,3 +21,7 @@ func (vs *VariableServiceImpl) CreateVariable(ctx context.Context, variable *pb.
 func (vs *VariableServiceImpl) DeleteVariable(ctx context.Context, variable *pb.Variable) error {
 	return vs.vr.DeleteVariable(ctx, variable)
 }
+
+func (vs *VariableServiceImpl) GetVariables(ctx context.Context, empty *pb.Empty) (*pb.VariablesList, error) {
+	return vs.vr.GetVariables(ctx, empty)
+}

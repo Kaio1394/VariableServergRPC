@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"VariableServergRPC/internal/dto"
 	"VariableServergRPC/internal/model"
 	"VariableServergRPC/pb"
 	"context"
@@ -16,7 +17,11 @@ func NewVariableRepositoryImpl(db *gorm.DB) *VariableRepositoryImpl {
 }
 
 func (v *VariableRepositoryImpl) CreateVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
-	if err := v.db.WithContext(ctx).Create(variable).Error; err != nil {
+	variableAux, err := dto.VariableProtoToVariableModel(variable)
+	if err != nil {
+		return nil, err
+	}
+	if err := v.db.WithContext(ctx).Create(variableAux).Error; err != nil {
 		return nil, err
 	}
 	return variable, nil
@@ -27,13 +32,19 @@ func (v *VariableRepositoryImpl) DeleteVariable(ctx context.Context, variable *p
 	panic("implement me")
 }
 
-func (v *VariableRepositoryImpl) GetVariable(ctx context.Context, variable *pb.Variable) (pb.Variable, error) {
+func (v *VariableRepositoryImpl) GetVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (v *VariableRepositoryImpl) GetVariables(ctx context.Context) (pb.VariablesList, error) {
-	panic("implement me")
+func (v *VariableRepositoryImpl) GetVariables(ctx context.Context, empty *pb.Empty) (*pb.VariablesList, error) {
+	var variables []model.Variable
+	err := v.db.WithContext(ctx).Find(&variables).Error
+	if err != nil {
+		return &pb.VariablesList{}, err
+	}
+	variablesAux, err := dto.GetVariablesToVariableList(variables)
+	return &variablesAux, nil
 }
 
 func (v *VariableRepositoryImpl) UpdateVariable(ctx context.Context, variable *pb.Variable) error {

@@ -4,12 +4,9 @@ package variable;
 
 option go_package = "./pb";
 
-import "google/protobuf/timestamp.proto";
-
 message Variable {
   string variable_key = 1;
   string variable_value = 2;
-  google.protobuf.Timestamp edit_date = 3;
 }
 
 message VariablesList{

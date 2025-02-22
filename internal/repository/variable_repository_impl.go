@@ -6,6 +6,7 @@ import (
 	"VariableServergRPC/pb"
 	"context"
 	"gorm.io/gorm"
+	"time"
 )
 
 type VariableRepositoryImpl struct {
@@ -54,6 +55,6 @@ func (v *VariableRepositoryImpl) UpdateVariable(ctx context.Context, variable *p
 	}
 	varExists.Key = variable.VariableKey
 	varExists.Value = variable.VariableValue
-	varExists.EditDate = variable.EditDate.AsTime()
+	varExists.EditDate = time.Now()
 	return v.db.WithContext(ctx).Save(varExists).Error
 }

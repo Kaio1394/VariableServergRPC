@@ -13,7 +13,7 @@ type VariableRepositoryImpl struct {
 }
 
 func NewVariableRepositoryImpl(db *gorm.DB) *VariableRepositoryImpl {
-	return &VariableRepositoryImpl{}
+	return &VariableRepositoryImpl{db: db}
 }
 
 func (v *VariableRepositoryImpl) CreateVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {

@@ -3,6 +3,7 @@ package database
 import (
 	"VariableServergRPC/config"
 	"VariableServergRPC/internal/logging"
+	"VariableServergRPC/internal/model"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -31,7 +32,7 @@ func ConnectDatabase() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	if err := db.AutoMigrate(); err != nil {
+	if err := db.AutoMigrate(&model.Variable{}); err != nil {
 		logger.Log.Error("Error running migration: ", err)
 	}
 

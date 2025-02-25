@@ -16,7 +16,6 @@ func (v *VariableHandlerImpl) CreateVariable(ctx context.Context, req *pb.Variab
 }
 
 func (v *VariableHandlerImpl) GetVariables(ctx context.Context, empty *pb.Empty) (*pb.VariablesList, error) {
-	//TODO implement me
 	return v.s.GetVariables(ctx, empty)
 }
 
@@ -26,13 +25,11 @@ func (v *VariableHandlerImpl) GetVariable(ctx context.Context, variable *pb.Vari
 }
 
 func (v *VariableHandlerImpl) UpdateVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
-	//TODO implement me
-	panic("implement me")
+	return v.s.UpdateVariable(ctx, variable)
 }
 
 func (v *VariableHandlerImpl) DeleteVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
-	//TODO implement me
-	panic("implement me")
+	return v.s.DeleteVariable(ctx, variable)
 }
 
 func NewVariableHandlerImpl(service *service.VariableServiceImpl) *VariableHandlerImpl {

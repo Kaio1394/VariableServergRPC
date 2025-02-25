@@ -20,7 +20,7 @@ func VariableProtoToVariableModel(variable *pb.Variable) (*model.Variable, error
 }
 
 func GetVariablesToVariableList(variables []model.Variable) (pb.VariablesList, error) {
-	var variablesList = []*pb.Variable{}
+	var variablesList []*pb.Variable
 	for _, v := range variables {
 		variablesList = append(variablesList, &pb.Variable{
 			VariableKey:   v.Key,

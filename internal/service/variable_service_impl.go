@@ -29,3 +29,7 @@ func (vs *VariableServiceImpl) GetVariables(ctx context.Context, empty *pb.Empty
 func (vs *VariableServiceImpl) UpdateVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
 	return vs.vr.UpdateVariable(ctx, variable)
 }
+
+func (vs *VariableServiceImpl) GetVariable(ctx context.Context, variable *pb.VariableRequest) (*pb.Variable, error) {
+	return vs.vr.GetVariable(ctx, variable)
+}

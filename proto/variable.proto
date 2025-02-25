@@ -9,14 +9,18 @@ message Variable {
   string variable_value = 2;
 }
 
-message VariablesList{
+message VariableRequest {
+  string variable_key = 1;
+}
+
+message VariablesList {
   repeated Variable variables = 1;
 }
 
-service VariableService{
+service VariableService {
   rpc CreateVariable(Variable) returns (Variable);
   rpc GetVariables(Empty) returns (VariablesList);
-  rpc GetVariable(Variable) returns (Variable);
+  rpc GetVariable(VariableRequest) returns (Variable);
   rpc UpdateVariable(Variable) returns (Variable);
   rpc DeleteVariable(Variable) returns (Variable);
 }

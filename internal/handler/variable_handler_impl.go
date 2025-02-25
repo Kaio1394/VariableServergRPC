@@ -19,9 +19,8 @@ func (v *VariableHandlerImpl) GetVariables(ctx context.Context, empty *pb.Empty)
 	return v.s.GetVariables(ctx, empty)
 }
 
-func (v *VariableHandlerImpl) GetVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
-	//TODO implement me
-	panic("implement me")
+func (v *VariableHandlerImpl) GetVariable(ctx context.Context, variable *pb.VariableRequest) (*pb.Variable, error) {
+	return v.s.GetVariable(ctx, variable)
 }
 
 func (v *VariableHandlerImpl) UpdateVariable(ctx context.Context, variable *pb.Variable) (*pb.Variable, error) {
